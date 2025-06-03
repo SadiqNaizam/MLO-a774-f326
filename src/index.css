@@ -4,54 +4,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 17% 96%; /* PRD #F3F4F6 */
+    --foreground: 217 29% 19%; /* PRD #232E3E */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%; /* PRD #FFFFFF */
+    --card-foreground: 217 29% 19%; /* PRD #232E3E */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%; /* PRD #FFFFFF */
+    --popover-foreground: 217 29% 19%; /* PRD #232E3E */
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 251 82% 63%; /* PRD #6F52ED */
+    --primary-foreground: 0 0% 100%; /* PRD #FFFFFF for text on primary */
 
+    /* Kept existing secondary as PRD doesn't specify a direct equivalent for UI element background */
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
+    /* Kept existing muted as PRD doesn't specify a direct equivalent for UI element background */
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 228 10% 57%; /* PRD #878A99 (secondaryText) */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 145 63% 51%; /* PRD #2ED573 (accentGreen) */
+    --accent-foreground: 217 29% 19%; /* PRD #232E3E (primaryText for readability on green) */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 33 100% 65%; /* PRD #FFA94D (accentRed) */
+    --destructive-foreground: 217 29% 19%; /* PRD #232E3E (primaryText for readability on orange) */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 14% 90%; /* PRD #E5E7EB */
+    --input: 210 14% 90%; /* PRD #E5E7EB (input border same as general border) */
+    --ring: 251 82% 63%; /* PRD #6F52ED (primary color for focus rings) */
 
-    --radius: 0.5rem;
+    --radius: 0.375rem; /* PRD rounded-md */
 
-    --sidebar-background: 0 0% 98%;
+    /* Sidebar theming based on PRD */
+    --sidebar: 251 82% 63%; /* PRD #6F52ED */
+    --sidebar-foreground: 0 0% 100%; /* PRD #FFFFFF for text on sidebar */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Font */
+    --font-primary: "Inter", sans-serif;
   }
 
   .dark {
+    /* PRD does not specify dark mode colors. Existing dark mode values are kept. */
+    /* If sidebar color #6F52ED should change in dark mode, add overrides for --sidebar and --sidebar-foreground here. */
+    /* Current setup implies sidebar color is fixed for both modes. */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -79,23 +75,20 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Removed old --sidebar-* dark mode variables to let the :root values for --sidebar and --sidebar-foreground apply,
+       or if a specific dark mode sidebar theme is needed, it should be defined here using --sidebar and --sidebar-foreground.
+       Based on PRD, #6F52ED is the sidebar color, implies it's constant. */
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
